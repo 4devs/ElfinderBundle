@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_elfinder.local_driver.class">FDevs\ElfinderPhpConnector\Driver\LocalDriver</parameter>
+        <parameter key="f_devs_elfinder.abstract_driver.class">FDevs\ElfinderPhpConnector\Driver\AbstractDriver</parameter>
+        <parameter key="f_devs_elfinder.photatoes_driver.class">FDevs\ElfinderPhpConnector\Driver\PhotatoesDriver</parameter>
+        <parameter key="f_devs_elfinder.connector.class">FDevs\ElfinderPhpConnector\Connector</parameter>
+    </parameters>
+
+    <services>
+        <service id="f_devs_elfinder.connector" class="%f_devs_elfinder.connector.class%"></service>
+        <service id="f_devs_elfinder.driver.abstract" class="%f_devs_elfinder.abstract_driver.class%" abstract="true"></service>
+        <service id="f_devs_elfinder.local.driver" class="%f_devs_elfinder.local_driver.class%" abstract="true"></service>
+        <service id="f_devs_elfinder.photatoes.driver" class="%f_devs_elfinder.photatoes_driver.class%" abstract="true">
+            <argument type="service" id="photatoes.manager"/>
+            <argument>XL</argument>
+        </service>
+    </services>
+</container>

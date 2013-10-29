@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "FDevsElfinderBundle:Helper:css.html.twig" %}
+</head>
+<body>
+{% include "FDevsElfinderBundle:Helper:js.html.twig" %}
+<script type="text/javascript" charset="utf-8">
+    $().ready(function () {
+        var $f = $('#elfinder').elfinder({
+            url: '{{path('f_devs_elfinder_connector')}}',
+            lang: '{{app.request.locale}}'
+        });
+
+        {% if fullscreen %}
+        var $window = $(window);
+        $window.resize(function () {
+            var $win_height = $window.height();
+            if ($f.height() != $win_height) {
+                $f.height($win_height).resize();
+            }
+        });
+        {% endif %}
+    });
+</script>
+<div id="elfinder"></div>
+</body>
+</html>

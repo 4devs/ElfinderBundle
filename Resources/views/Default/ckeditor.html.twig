@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "FDevsElfinderBundle:Helper:css.html.twig" %}
+    {% include "FDevsElfinderBundle:Helper:js.html.twig" %}
+    <meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript" charset="utf-8">
+    function getUrlParam(paramName) {
+        var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i');
+        var match = window.location.search.match(reParam);
+
+        return (match && match.length > 1) ? match[1] : '';
+    }
+    $().ready(function () {
+        var funcNum = getUrlParam('CKEditorFuncNum');
+        var mode = getUrlParam('mode');
+
+        var f = $('#elfinder').elfinder({
+            url: '{{path('f_devs_elfinder_connector')}}' + '?mode=' + mode,
+            lang: '{{app.request.locale}}',
+            getFileCallback: function (file) {
+                if (funcNum) {
+                    window.opener.CKEDITOR.tools.callFunction(funcNum, file.url);
+                    window.close();
+                }
+            }
+        });
+        $(window).resize(function(){
+            var h = $(window).height();
+
+            if($('#elfinder').height() != h - 20){
+                $('#elfinder').height(h -20).resize();
+            }
+        });
+
+    });
+</script>
+<div id="elfinder"></div>
+</body>
+</html>
