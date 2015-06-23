@@ -1,0 +1,37 @@
+{
+    "name": "fdevs/elfinder-bundle",
+    "type": "symfony-bundle",
+    "description": "4devs Elfinder bundle for WYSIWYG",
+    "keywords": [
+        "WYSIWYG",
+        "elfinder"
+    ],
+    "homepage": "https://github.com/4devs/ElfinderBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "4devs company",
+            "homepage": "http://4devs.org"
+        },
+        {
+            "name": "Andrey Samusev",
+            "email": "andrey@4devs.org",
+            "homepage": "http://andrey.4devs.io"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/ElfinderBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "fdevs/elfinder-php-connector": "~1.0"
+    },
+    "require-dev": {},
+    "suggest": {
+        "egeloen/ckeditor-bundle": "use with CKEditor"
+    },
+    "autoload": {
+        "psr-4": {"FDevs\\ElfinderBundle\\": ""}
+    }
+}
